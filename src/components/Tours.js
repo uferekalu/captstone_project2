@@ -21,7 +21,9 @@ const Tours = ({ name, info, image, price }) => {
             <a href="#">See More</a>
           </span>
         </p>
+
       </div>
+     <button className="delete-btn">Not Interested</button> 
     </div>
   );
 };
