@@ -1,31 +1,29 @@
-import React from "react";
+import React, { useState } from 'react'
 
 const Tours = ({ name, info, image, price }) => {
-  return (
-    <div className="section">
-      <div className="single-tour">
-        <img src={image} alt={name} />
-      </div>
-      <div className="section-name">
-        <h4>
-          {name}
-        </h4>
-        <p className="tour-price">
-          {price}
-        </p>
-      </div>
-      <div className="tour-info">
-        <p>
-          {info.substring(0, 200)}...{" "}
-          <span>
-            <a href="#">See More</a>
-          </span>
-        </p>
+	const [readMore, setReadMore] = useState(false)
+	return (
+		<div className='tour'>
+			<img src={image} alt={name} />
+			<div class='tour-info'>
+				<header className='tour-header'>
+					<h4>{name}</h4>
+					<p className='tour-price'>${price}</p>
+				</header>
+				<div className='tour-details'>
+					<p>
+						{readMore ? info : `${info.substring(0, 200)}...`}{' '}
+						<button
+							class='see-more-btn'
+							onClick={() => setReadMore(!readMore)}>
+							{readMore ? 'See Less' : 'See More'}
+						</button>
+					</p>
+				</div>
+				<button class='delete-btn'>Not Interested</button>
+			</div>
+		</div>
+	)
+}
 
-      </div>
-     <button className="delete-btn">Not Interested</button> 
-    </div>
-  );
-};
-
-export default Tours;
+export default Tours
