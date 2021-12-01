@@ -20,6 +20,22 @@ function App() {
 		};
 		fetchData();
 	}, [setTours]);
+	
+	const removeTour = (id) => {
+		const currentTours = tours.filter((tour) => tour.id !== id);
+		setTours(currentTours)
+	}
+
+	const refreshPage = () => {
+		const fetchData = async () => {
+			setLoading(true);
+			const res = await fetch(url);
+			const response = await res.json();
+			setTours(response);
+			setLoading(false)
+		};
+		fetchData();
+	}
 
 	return (
 		<main className='main'>
@@ -27,21 +43,33 @@ function App() {
 				<Loading />
 			) : (
 				<>
-					<h1 className='title'>Our Tours</h1>
-					<p className='underline'></p>
-						<section className='tours'>
-						{
-							tours?.map((tour) => (
-								<Tours
-									key={tour.id}
-									name={tour.name}
-									info={tour.info}
-									image={tour.image}
-									price={tour.price}
-								/>
-							))
-						}
-					</section>
+					{tours.length === 0 ? (
+						<>
+							<h1 className='title'>There are no tours left</h1>
+							<button class='refresh' onClick={refreshPage}>Refresh</button>
+						</>
+					) : (
+						<>
+						<h1 className='title'>Our Tours</h1>
+							<p className='underline'></p>
+								<section className='tours'>
+								{
+									tours?.map((tour) => (
+										<Tours
+											key={tour.id}
+											name={tour.name}
+											tourId={tour.id}
+											info={tour.info}
+											image={tour.image}
+											price={tour.price}
+											removeTour={removeTour}
+										/>
+									))
+								}
+							</section>
+						</>
+					)}
+					
 				</>
 			)}
 		</main>

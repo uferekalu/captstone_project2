@@ -163,6 +163,20 @@ Tours
 	font-weight: bold;
 	cursor: pointer;
 }
+.refresh {
+	all: unset;
+	margin: 0 auto;
+	display: block;
+	width: 150px;
+	text-align: center;
+	color: var(--clr-white);
+	letter-spacing: var(--spacing);
+	background: var(--clr-primary-3);
+	padding: 0.25rem 0.5rem;
+	border-radius: var(--radius);
+	font-weight: bold;
+	cursor: pointer;
+}
 
 .see-more-btn {
 	all: unset;
